@@ -9,19 +9,18 @@ import Foundation
 import CoreData
 import SwiftUI
 
-//protocol HomeViewModel: ObservableObject {
-//    func delete(offsets: IndexSet)
-//}
-//
-//@MainActor
-//final class HomeViewModelImpl: HomeViewModel {
-//    
-//    func delete(offsets: IndexSet, context: NSManagedObjectContext) {
-//        withAnimation {
-//            offsets.map { data[$0] }.forEach(context.delete)
-//
-//            LinkController().save(context: context)
-//        }
-//    }
-//    
-//}
+protocol HomeViewModel: ObservableObject {
+    func delete(item: FetchedResults<LinkData>.Element, context: NSManagedObjectContext)
+}
+
+@MainActor
+final class HomeViewModelImpl: HomeViewModel {
+    func delete(item: FetchedResults<LinkData>.Element, context: NSManagedObjectContext) {
+        withAnimation {
+            context.delete(item)
+            
+            LinkController().save(context: context)
+        }
+    }
+    
+}
