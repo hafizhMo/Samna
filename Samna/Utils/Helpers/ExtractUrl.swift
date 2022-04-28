@@ -14,8 +14,8 @@ class ExtractUrl {
         self.baseUrl = baseUrl
     }
     
-    func getFaviconUrl() -> URL {
-        return URL(string: "https://www.google.com/s2/favicons?sz=64&domain=\(baseUrl)")!
+    func getFaviconUrl() -> String {
+        return "https://www.google.com/s2/favicons?sz=64&domain=\(baseUrl)"
     }
 
     func getTitleUrl() -> String {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemView: View {
-    let item: ItemModel
+    let item: LinkData
     
     var body: some View {
         HStack {
@@ -17,15 +17,15 @@ struct ItemView: View {
                 HStack {
                     Image(systemName: "safari")
                         .font(.system(size: 12, weight: .black))
-                    Text(item.link)
+                    Text(item.url!)
                 }
 
-                Text(makeAttributedString(title: "Next Chapter", label: "\(item.chapter!)"))
+                Text(makeAttributedString(title: "Next Chapter", label: "\(item.chapter)"))
             }
             .padding()
             .foregroundColor(.black)
             Spacer()
-            AsyncImage(url: ExtractUrl(baseUrl: item.link).getFaviconUrl())
+            AsyncImage(url: URL(string: item.favicon!))
                 .frame(width: 48, height: 48)
                 .padding()
         }
@@ -46,9 +46,9 @@ struct ItemView: View {
     }
 }
 
-struct ItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemView(item: ItemModel.data)
-            .preview(displayName: "Item View")
-    }
-}
+//struct ItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ItemView(item: ItemModel.data)
+//            .preview(displayName: "Item View")
+//    }
+//}

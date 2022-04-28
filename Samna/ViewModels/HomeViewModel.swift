@@ -6,32 +6,22 @@
 //
 
 import Foundation
+import CoreData
 import SwiftUI
 
-protocol HomeViewModel: ObservableObject {
-    func getLinks() -> [ItemModel]
-    func add(newItem: ItemModel)
-    func delete(selectedLink: ItemModel)
-}
-
-@MainActor
-final class HomeViewModelImpl: HomeViewModel {
-    @Published private var items = [ItemModel]()
-    
-    func getLinks() -> [ItemModel] {
-        return items
-    }
-    
-    func delete(selectedLink: ItemModel) {
-        let index = items.firstIndex(where: { $0.chapter == selectedLink.chapter })!
-        withAnimation {
-            items.remove(at: index)
-        }
-    }
-    
-    func add(newItem: ItemModel) {
-        withAnimation {
-            items.insert(newItem, at: 0)
-        }
-    }
-}
+//protocol HomeViewModel: ObservableObject {
+//    func delete(offsets: IndexSet)
+//}
+//
+//@MainActor
+//final class HomeViewModelImpl: HomeViewModel {
+//    
+//    func delete(offsets: IndexSet, context: NSManagedObjectContext) {
+//        withAnimation {
+//            offsets.map { data[$0] }.forEach(context.delete)
+//
+//            LinkController().save(context: context)
+//        }
+//    }
+//    
+//}
