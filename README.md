@@ -7,7 +7,7 @@ Aplikasi ini dibuat untuk menjawab pertanyaan "Sampe Mana?", ketika sedang memba
 
 ### Features
 * Save link of your online reading stuff
-* Categorize your online reading stuff
+~~* Categorize your online reading stuff~~
 * Navigate to browser by saved link
 
 ### Built with
