@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SamnaApp: App {
+    @StateObject private var linkController = LinkController()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
+                .environment(\.managedObjectContext, linkController.container.viewContext)
         }
     }
 }
