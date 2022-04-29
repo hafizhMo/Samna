@@ -19,6 +19,21 @@ class ExtractUrl {
     }
 
     func getTitleUrl() -> String {
-        return "??"
+        guard let url = URL(string: "https://stackoverflow.com/questions/54285248/get-title-when-input-url-on-uitextfield-on-swift-4") else { return "" }
+
+        var temp = ""
+        DispatchQueue.global().async {
+            if let content = try? String(contentsOf: url, encoding: .utf8) {
+                DispatchQueue.main.async {
+                    if let range = content.range(of: "<title>.*?</title>", options: .regularExpression, range: nil, locale: nil) {
+                        let title = content[range].replacingOccurrences(of: "</?title>", with: "", options: .regularExpression, range: nil)
+//                        print(title) // prints "ios - Get Title when input URL on UITextField on swift 4 - Stack Overflow"
+                        temp = title
+                    }
+                }
+            }
+        }
+//        return "??"
+        return temp
     }
 }

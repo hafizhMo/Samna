@@ -20,7 +20,7 @@ struct ItemView: View {
                     Text(item.url!)
                 }
 
-                Text(makeAttributedString(title: "Next Chapter", label: "\(item.chapter)"))
+                Text(makeAttributedString(title: "Latest Chapter", label: "\(item.chapter)"))
             }
             .padding()
             .foregroundColor(.black)
