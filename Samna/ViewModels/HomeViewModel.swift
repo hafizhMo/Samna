@@ -6,32 +6,32 @@
 //
 
 import Foundation
+import CoreData
 import SwiftUI
 
 protocol HomeViewModel: ObservableObject {
-    func getLinks() -> [ItemModel]
-    func add(newItem: ItemModel)
-    func delete(selectedLink: ItemModel)
+    func delete(item: FetchedResults<LinkData>.Element, context: NSManagedObjectContext)
+    func update(item: FetchedResults<LinkData>.Element, context: NSManagedObjectContext)
+    
 }
 
 @MainActor
 final class HomeViewModelImpl: HomeViewModel {
-    @Published private var items = [ItemModel]()
     
-    func getLinks() -> [ItemModel] {
-        return items
-    }
-    
-    func delete(selectedLink: ItemModel) {
-        let index = items.firstIndex(where: { $0.chapter == selectedLink.chapter })!
+    func update(item: FetchedResults<LinkData>.Element, context: NSManagedObjectContext) {
         withAnimation {
-            items.remove(at: index)
+            item.chapter = item.chapter+1
+        
+            LinkController().save(context: context)
         }
     }
     
-    func add(newItem: ItemModel) {
+    func delete(item: FetchedResults<LinkData>.Element, context: NSManagedObjectContext) {
         withAnimation {
-            items.insert(newItem, at: 0)
+            context.delete(item)
+            
+            LinkController().save(context: context)
         }
     }
+    
 }

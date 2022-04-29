@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct AddLinkView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @StateObject private var viewModel = AddViewModelImpl()
     @Binding var isPresented: Bool
-    @State var newLink = ItemModel(link: "", chapter: nil, category: "")
+    
+    @State private var url = ""
+    @State private var chapter = 0
+    
+//    init() {
+//        self._viewModel = StateObject(wrappedValue: AddViewModelImpl())
+//    }
     
     var body: some View {
         NavigationView {
@@ -19,13 +27,13 @@ struct AddLinkView: View {
                 Section(header: Text("Info")) {
                     
                     TextField("Link",
-                              text: $newLink.link)
+                              text: $url)
                     
-                    TextField("Category",
-                              text: $newLink.category)
+//                    TextField("Category",
+//                              text: $newLink.category)
                     
-                    TextField("Chapter",
-                              value: $newLink.chapter, formatter: NumberFormatter())
+                    TextField("Chapter (Optional)",
+                              value: $chapter, formatter: NumberFormatter())
                 }
             }
             .navigationTitle("Add New Link")
@@ -37,6 +45,7 @@ struct AddLinkView: View {
                 }),
                 trailing: Button(action: {
                     isPresented = false
+                    viewModel.add(url: url, chapter: Int64(chapter), context: managedObjectContext)
                 }, label: {
                     Text("Add")
                 })
@@ -45,9 +54,9 @@ struct AddLinkView: View {
     }
 }
 
-struct AddLinkView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddLinkView(isPresented: .constant(false))
-            .preview(displayName: "Add Link View")
-    }
-}
+//struct AddLinkView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddLinkView(isPresented: .constant(false))
+//            .preview(displayName: "Add Link View")
+//    }
+//}

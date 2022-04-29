@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB322D7A281A0B3E00A9C0AA /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB322D79281A0B3E00A9C0AA /* AddViewModel.swift */; };
-		FB322D7C281A0B4900A9C0AA /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB322D7B281A0B4900A9C0AA /* EditViewModel.swift */; };
-		FB322D80281A13CC00A9C0AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB322D7F281A13CC00A9C0AA /* Constants.swift */; };
 		FB322D82281A1E5A00A9C0AA /* ExtractUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB322D81281A1E5A00A9C0AA /* ExtractUrl.swift */; };
+		FB322D85281A2BE300A9C0AA /* LinkModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB322D83281A2BE300A9C0AA /* LinkModel.xcdatamodeld */; };
+		FB322D89281A358C00A9C0AA /* LinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB322D88281A358C00A9C0AA /* LinkController.swift */; };
+		FB322D8B281A35DF00A9C0AA /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB322D8A281A35DF00A9C0AA /* AddViewModel.swift */; };
+		FB322D8D281A379D00A9C0AA /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB322D8C281A379D00A9C0AA /* EditViewModel.swift */; };
 		FB3C68562819BC86000BBB4B /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C68552819BC86000BBB4B /* ItemModel.swift */; };
 		FB3C685A2819BD3C000BBB4B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C68592819BD3C000BBB4B /* HomeViewModel.swift */; };
 		FB3C685C2819BD6E000BBB4B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C685B2819BD6E000BBB4B /* HomeView.swift */; };
@@ -25,10 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FB322D79281A0B3E00A9C0AA /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
-		FB322D7B281A0B4900A9C0AA /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
-		FB322D7F281A13CC00A9C0AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB322D81281A1E5A00A9C0AA /* ExtractUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractUrl.swift; sourceTree = "<group>"; };
+		FB322D84281A2BE300A9C0AA /* LinkModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LinkModel.xcdatamodel; sourceTree = "<group>"; };
+		FB322D88281A358C00A9C0AA /* LinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkController.swift; sourceTree = "<group>"; };
+		FB322D8A281A35DF00A9C0AA /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
+		FB322D8C281A379D00A9C0AA /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		FB3C68552819BC86000BBB4B /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		FB3C68592819BD3C000BBB4B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FB3C685B2819BD6E000BBB4B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -60,7 +62,6 @@
 				FBBA04712819F94500654D87 /* Components */,
 				FB322D7E281A138C00A9C0AA /* Helpers */,
 				FBBA04792819F9B800654D87 /* Extensions */,
-				FB322D7F281A13CC00A9C0AA /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -87,8 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				FB3C68592819BD3C000BBB4B /* HomeViewModel.swift */,
-				FB322D79281A0B3E00A9C0AA /* AddViewModel.swift */,
-				FB322D7B281A0B4900A9C0AA /* EditViewModel.swift */,
+				FB322D8A281A35DF00A9C0AA /* AddViewModel.swift */,
+				FB322D8C281A379D00A9C0AA /* EditViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -97,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				FB3C68552819BC86000BBB4B /* ItemModel.swift */,
+				FB322D83281A2BE300A9C0AA /* LinkModel.xcdatamodeld */,
+				FB322D88281A358C00A9C0AA /* LinkController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,16 +229,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB322D7C281A0B4900A9C0AA /* EditViewModel.swift in Sources */,
-				FB322D7A281A0B3E00A9C0AA /* AddViewModel.swift in Sources */,
+				FB322D8D281A379D00A9C0AA /* EditViewModel.swift in Sources */,
 				FB3C68562819BC86000BBB4B /* ItemModel.swift in Sources */,
 				FBBA047D2819FE3700654D87 /* AddLinkView.swift in Sources */,
 				FBEFF6232818DE5000CFAE29 /* SamnaApp.swift in Sources */,
 				FB322D82281A1E5A00A9C0AA /* ExtractUrl.swift in Sources */,
+				FB322D85281A2BE300A9C0AA /* LinkModel.xcdatamodeld in Sources */,
 				FB3C685C2819BD6E000BBB4B /* HomeView.swift in Sources */,
-				FB322D80281A13CC00A9C0AA /* Constants.swift in Sources */,
 				FBBA047B2819F9CA00654D87 /* ViewExt.swift in Sources */,
+				FB322D89281A358C00A9C0AA /* LinkController.swift in Sources */,
 				FBBA047F2819FE4300654D87 /* EditLinkView.swift in Sources */,
+				FB322D8B281A35DF00A9C0AA /* AddViewModel.swift in Sources */,
 				FBBA04782819F98A00654D87 /* ItemView.swift in Sources */,
 				FBBA04762819F97F00654D87 /* EmptyView.swift in Sources */,
 				FB3C685A2819BD3C000BBB4B /* HomeViewModel.swift in Sources */,
@@ -439,6 +443,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FB322D83281A2BE300A9C0AA /* LinkModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FB322D84281A2BE300A9C0AA /* LinkModel.xcdatamodel */,
+			);
+			currentVersion = FB322D84281A2BE300A9C0AA /* LinkModel.xcdatamodel */;
+			path = LinkModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FBEFF6172818DE5000CFAE29 /* Project object */;
 }

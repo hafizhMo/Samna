@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var viewModel: HomeViewModelImpl
+    @StateObject private var viewModel : HomeViewModelImpl
     @State private var isPresented = false
-    @State private var content = ""
-    @State private var selectedItem: ItemModel = ItemModel(link: "", category: "")
+    
+//    @Environment(\.openURL) var openURL
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.id, order: .reverse)]) var data: FetchedResults<LinkData>
     
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModelImpl())
@@ -19,27 +21,36 @@ struct HomeView: View {
     
     var body: some View {
         
+        var detail = ""
+        
         NavigationView {
             
             VStack {
-                if viewModel.getLinks().count == 0 {
+                if data.count == 0 {
                     EmptyView()
                 } else {
-                    List(viewModel.getLinks()) { item in
-                        Link(destination: URL(string: item.link)!) {
-                            ItemView(item: item)
-                        }
-                        .swipeActions {
-                            Button("Delete", role: .destructive) {
-                                viewModel.delete(selectedLink: item)
+                    List(data) { item in
+                        if let tempUrl = URL(string: item.url ?? "") {
+                            Link(destination: tempUrl) {
+                                ItemView(item: item)
                             }
-                            Button("Edit") {
-                                isPresented = true
-                                content = "edit"
-                                selectedItem = item
-                                
+                            .swipeActions {
+                                Button("Delete", role: .destructive) {
+                                    viewModel.delete(item: item, context: managedObjectContext)
+                                }
+                                Button("Edit") {
+                                    print("edit")
+                                    detail = "edit"
+                                    isPresented = true
+                                }
+                                .tint(.blue)
                             }
-                            .tint(.blue)
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button("Next Chapter"){
+                                    viewModel.update(item: item, context: managedObjectContext)
+//                                    openURL(tempUrl)
+                                }
+                            }
                         }
                     }
                 }
@@ -47,25 +58,18 @@ struct HomeView: View {
             .navigationTitle("Home")
             .navigationBarItems(trailing: Button(action: {
                 isPresented = true
-                content = "add"
-                viewModel.add(newItem: ItemModel(link: "https://youtube.com", chapter: (viewModel.getLinks().count + 1), category: "Article"))
+                detail = "add"
             }, label: {
                 Image(systemName: "plus")
             }))
             .sheet(isPresented: $isPresented,
                    content: {
-                if content == "add" {
+                if detail == "add" {
                     AddLinkView(isPresented: $isPresented)
-                } else if content == "edit" {
-                    EditLinkView(isPresented: $isPresented, item: selectedItem)
+                } else if detail == "edit" {
+                    EditLinkView(isPresented: $isPresented)
                 }
             })
         }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView().preview(displayName: "Home View")
     }
 }

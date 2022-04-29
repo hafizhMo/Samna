@@ -8,26 +8,19 @@
 import SwiftUI
 
 struct EditLinkView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Binding var isPresented: Bool
-    var item: ItemModel
     
-    @State private var newItem = ItemModel(link: "", category: "")
+    @State private var newUrl = ""
+    @State private var newChapter = 0
     
     var body: some View {
         NavigationView {
             
             Form {
-                
                 Section(header: Text("Info")) {
-                    
-                    TextField("\(item.link)",
-                              text: $newItem.link)
-                    
-                    TextField("\(item.category)",
-                              text: $newItem.category)
-                    
-                    TextField("\(item.chapter!)",
-                              value: $newItem.chapter, formatter: NumberFormatter())
+                    TextField("https://google.com", text: $newUrl)
+                    TextField("0", value: $newChapter, formatter: NumberFormatter())
                 }
             }
             .navigationTitle("Edit Link")
@@ -44,12 +37,5 @@ struct EditLinkView: View {
                 })
             )
         }
-    }
-}
-
-struct EditLinkView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditLinkView(isPresented: .constant(false), item: ItemModel.data)
-            .preview(displayName: "Edit Link View")
     }
 }
