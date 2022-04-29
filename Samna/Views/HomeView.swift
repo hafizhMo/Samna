@@ -11,7 +11,7 @@ struct HomeView: View {
     @StateObject private var viewModel : HomeViewModelImpl
     @State private var isPresented = false
     
-    @Environment(\.openURL) var openURL
+//    @Environment(\.openURL) var openURL
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id, order: .reverse)]) var data: FetchedResults<LinkData>
     
